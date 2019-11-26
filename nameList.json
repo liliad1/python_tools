@@ -1,0 +1,135 @@
+{
+    "userList": [{
+        "userId": "張洋",
+        "EID": "yang.c.zhang",
+        "URL": "https://trailhead.salesforce.com/ja/me/0052J000008XvX9QAK"
+    },{
+        "userId": "李昊泽",
+        "EID": "haoze.li",
+        "URL": "https://trailhead.salesforce.com/en/me/0052J000008YTRyQAO"
+    },{
+        "userId": "邢冬冬",
+        "EID": "dongdong.xing",
+        "URL": "https://trailhead.salesforce.com/ja/me/00550000006dB4eAAE"
+    },{
+        "userId": "宋憲学",
+        "EID": "xianxue.song",
+        "URL": "https://trailhead.salesforce.com/ja/me/00550000007wXuLAAU"
+    },{
+        "userId": "张智",
+        "EID": "zhi.b.zhang",
+        "URL": "https://trailhead.salesforce.com/en/me/00550000006bZpdAAE"
+    },{
+        "userId": "张兆永",
+        "EID": "zhaoyong.zhang",
+        "URL": "https://trailhead.salesforce.com/ja/me/0052J000008XvXsQAK"
+    },{
+        "userId": "孫偉",
+        "EID": "w.sun",
+        "URL": "https://trailhead.salesforce.com/ja/me/sunw"
+    },{
+        "userId": "南炳俊",
+        "EID": "bingjun.nan",
+        "URL": "https://trailhead.salesforce.com/ja/me/nanbingjun"
+    },{
+        "userId": "田娜",
+        "EID": "anna.na.tian",
+        "URL": "https://trailhead.salesforce.com/ja/me/0052J000008BrauQAC"
+    },{
+        "userId": "斎 越",
+        "EID": "yue.a.qi",
+        "URL": "https://trailblazer.me/id/xiaxu"
+    },{
+        "userId": "黄玉海",
+        "EID": "yuhai.huang",
+        "URL": "https://trailhead.salesforce.com/en/me/00550000006cNpDAAU"
+    },{
+        "userId": "郭玥",
+        "EID": "luna.yue.guo",
+        "URL": "https://trailhead.salesforce.com/ja/me/0052J000008Y3y3QAC"
+    },{
+        "userId": "严荣",
+        "EID": "rong.yan",
+        "URL": "https://trailhead.salesforce.com/ja/me/0052J000008BEtQQAW"
+    },{
+        "userId": "吕其明",
+        "EID": "qiming.lu",
+        "URL": "https://trailhead.salesforce.com/ja/me/qimlv"
+    },{
+        "userId": "丁 旭",
+        "EID": "xu.b.ding",
+        "URL": "https://trailhead.salesforce.com/ja/me/dingxu61"
+    },{
+        "userId": "刘永巧",
+        "EID": "yongqiao.liu",
+        "URL": "https://trailhead.salesforce.com/ja/me/0052J000008YMe7QAG"
+    },{
+        "userId": "高岩",
+        "EID": "y.a.gao",
+        "URL": "https://trailhead.salesforce.com/ja/me/0052J000008Y4DwQAK"
+    },{
+        "userId": "曹新寧",
+        "EID": "xinning.cao",
+        "URL": "https://trailhead.salesforce.com/ja/me/0052J000008YuEcQAK"
+    },{
+        "userId": "刘旭琳",
+        "EID": "xulin.liu",
+        "URL": "https://trailhead.salesforce.com/ja/me/0052J000008Y9WAQA0"
+    },{
+        "userId": "朱慧鹏",
+        "EID": "huipeng.zhu",
+        "URL": "https://trailhead.salesforce.com/ja/me/0052J000008YMVZQA4"
+    },{
+        "userId": "趙 梓棟",
+        "EID": "zidong.zhao",
+        "URL": "https://trailhead.salesforce.com/ja/me/welcome8821"
+    },{
+        "userId": "劉佳",
+        "EID": "jia.a.liu",
+        "URL": "https://trailhead.salesforce.com/ja/me/lijia9"
+    },{
+        "userId": "李復絹",
+        "EID": "fujuan.li",
+        "URL": "https://trailhead.salesforce.com/ja/me/fujuan"
+    },{
+        "userId": "張陽陽",
+        "EID": "sunny.yangyang.zhang",
+        "URL": "https://trailhead.salesforce.com/ja/me/yzhang27"
+    },{
+        "userId": "劉向陽",
+        "EID": "xiangyang.liu",
+        "URL": "https://trailhead.salesforce.com/ja/me/yzhang27"
+    },{
+        "userId": "姚慧",
+        "EID": "h.yao",
+        "URL": "https://trailhead.salesforce.com/ja/me/0052J000008YMYEQA4"
+    },{
+        "userId": "刘昕怡",
+        "EID": "xinyi.b.liu",
+        "URL": "https://trailhead.salesforce.com/en/me/0052J000008YHz5QAG"
+    },{
+        "userId": "孙忠华",
+        "EID": "z.sun",
+        "URL": "https://trailhead.salesforce.com/ja/me/0052J000008YLqbQAG"
+    },{
+        "userId": "于健",
+        "EID": "j.c.yu",
+        "URL": "https://trailhead.salesforce.com/ja/me/0052J000008XvSTQA0"
+    },{
+        "userId": "阮富国",
+        "EID": "fuguo.ruan",
+        "URL": "https://trailhead.salesforce.com/ja/me/0052J000008Y49fQAC"
+    },{
+        "userId": "李紅",
+        "EID": "hong.a.li",
+        "URL": "https://trailhead.salesforce.com/ja/me/0052J000008YGpdQAG"
+    },{
+        "userId": "荣成麒",
+        "EID": "Chengqi.rong",
+        "URL": "https://trailhead.salesforce.com/ja/me/0052J000008Y49GQAS"
+    },{
+        "userId": "李鑫鑫",
+        "EID": "xinxin.a.li",
+        "URL": "https://trailhead.salesforce.com/ja/me/0052J000008YU68QAG"
+    }]
+}
