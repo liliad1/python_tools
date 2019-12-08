@@ -26,7 +26,9 @@ message = {"actions": [
      "params": {"namespace": "", "classname": "ProfileService", "method": "fetchTrailheadData",
                 "params": {"userId": "", "language": "en-US"}, "cacheable": False,
                 "isContinuation": False}}]}
-aura_context = json.dumps({"mode": "PROD", "fwuid": "3uHUkqaEy5o9m3W8DAEYIw", "app": "c:ProfileApp"})
+aura_context = json.dumps({"mode": "PROD", "fwuid": "5fuxCiO1mNHGdvJphU5ELQ", "app": "c:ProfileApp",
+                           "loaded": {"APPLICATION@markup://c:ProfileApp": "i9uiWcN1lGOS5kUO98xvEw"}, "dn": [],
+                           "globals": {"srcdoc": True}, "uad": True})
 if jsonData:
     for i in jsonData:
         exportData = {}
@@ -48,7 +50,6 @@ if jsonData:
             exportData['userName'] = userName
             userId = userInfo.get('profileUser').get('Id')
             message.get("actions")[0].get("params").get("params")["userId"] = userId
-            # print(message.get("actions")[0].get("params").get("params").get("userId"))
             data = {"message": json.dumps(message), "aura.context": aura_context, "aura.token": ""}
             r = requests.post("https://trailblazer.me/aura?r=0&aura.ApexAction.execute=1", headers=headers,
                               data=data)
@@ -74,8 +75,8 @@ if jsonData:
         userList.append(exportData)
 print('Done!')
 
-with open(BASE_PATH + '/export.csv', "w", newline='', encoding='utf-8') as f:
-    writer = csv.writer(f)
+with open(BASE_PATH + '/export.csv', "w", newline='', encoding='utf_8_sig') as f:
+    writer = csv.writer(f, dialect='excel')
     writer.writerow(['No', '姓名', 'userName', 'EID', '等级', '勋章', '积分', 'URL', 'error'])
     for inx, val in enumerate(sorted(userList, key=lambda usr: usr['EarnedPointTotal'], reverse=True)):
         writer.writerow([str(inx + 1), val.get('userId'), val.get('userName'), val.get(
