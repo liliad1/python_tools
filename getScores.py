@@ -26,9 +26,13 @@ message = {"actions": [
      "params": {"namespace": "", "classname": "ProfileService", "method": "fetchTrailheadData",
                 "params": {"userId": "", "language": "en-US"}, "cacheable": False,
                 "isContinuation": False}}]}
-aura_context = json.dumps({"mode": "PROD", "fwuid": "5fuxCiO1mNHGdvJphU5ELQ", "app": "c:ProfileApp",
-                           "loaded": {"APPLICATION@markup://c:ProfileApp": "i9uiWcN1lGOS5kUO98xvEw"}, "dn": [],
-                           "globals": {"srcdoc": True}, "uad": True})
+aura_context = {"mode": "PROD", "fwuid": "5fuxCiO1mNHGdvJphU5ELQ", "app": "c:ProfileApp",
+                           "loaded": {"APPLICATION@markup://c:ProfileApp": ""}, "dn": [],
+                           "globals": {"srcdoc": True}, "uad": True}
+obj = requests.get('https://trailblazer.me/c/ProfileApp.app?aura.format=JSON&aura.formatAdapter=LIGHTNING_OUT')
+aura_context.get("loaded")['APPLICATION@markup://c:ProfileApp'] = obj.json().get('auraConfig').get('context').get('loaded').get('APPLICATION@markup://c:ProfileApp')
+
+
 if jsonData:
     for i in jsonData:
         exportData = {}
@@ -50,7 +54,7 @@ if jsonData:
             exportData['userName'] = userName
             userId = userInfo.get('profileUser').get('Id')
             message.get("actions")[0].get("params").get("params")["userId"] = userId
-            data = {"message": json.dumps(message), "aura.context": aura_context, "aura.token": ""}
+            data = {"message": json.dumps(message), "aura.context": json.dumps(aura_context), "aura.token": ""}
             r = requests.post("https://trailblazer.me/aura?r=0&aura.ApexAction.execute=1", headers=headers,
                               data=data)
             if r.text.find('EarnedPointTotal') > 0:
