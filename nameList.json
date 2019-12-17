@@ -30,7 +30,7 @@
     },{
         "userId": "宋新宇",
         "EID": "xinyu.song",
-        "URL": "https://trailblazer.me/id/songxinyu"
+		"URL": "https://trailblazer.me/id/songxinyu"
     },{
         "userId": "黄鶴立",
         "EID": "heli.huang",
@@ -59,6 +59,10 @@
         "userId": "黄鵬",
         "EID": "peng.huang",
         "URL": "https://trailblazer.me/id/phuang7"
+    },{
+        "userId": "陳爽",
+        "EID": "s.b.chen",
+        "URL": "https://trailblazer.me/id/welcome12575"
     },{
         "userId": "劉景峰",
         "EID": "jingfeng.liu",
@@ -99,6 +103,10 @@
         "userId": "高忠光",
         "EID": "zhongguang.gao",
         "URL": "https://trailblazer.me/id/gaozhongguang"
+    },{
+        "userId": "王海倫",
+        "EID": "hailun.wang",
+        "URL": "https://trailblazer.me/id/hwang28"
     },{
         "userId": "孙序涛",
         "EID": "xutao.sun",
@@ -232,10 +240,6 @@
         "EID": "l.jiang",
         "URL": "https://trailblazer.me/id/ljiang1"
     },{
-        "userId": "姜琳",
-        "EID": "l.jiang",
-        "URL": "https://trailblazer.me/id/ljiang1"
-    },{
         "userId": "孫先慶",
         "EID": "xianqing.sun",
         "URL": "https://trailblazer.me/id/xianqingsun"
@@ -320,6 +324,10 @@
         "EID": "yunpeng.zhao",
         "URL": "https://trailblazer.me/id/yunpengzhao"
     },{
+        "userId": "董明",
+        "EID": "m.dong",
+        "URL": "https://trailblazer.me/id/dmkun"
+    },{
         "userId": "孫雅寧",
         "EID": "yaning.a.sun",
         "URL": "https://trailblazer.me/id/sunyaning"
@@ -331,6 +339,10 @@
         "userId": "李晗",
         "EID": "han.b.li",
         "URL": "https://trailblazer.me/id/hanhanli"
+    },{
+        "userId": "尹航",
+        "EID": "hang.a.yin",
+        "URL": "https://trailblazer.me/id/hayin2"
     },{
         "userId": "張巍",
         "EID": "ｙuki.wei.zhang",
