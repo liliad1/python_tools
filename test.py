@@ -1,79 +1,58 @@
-# coding=utf-8
-
+import hashlib
+import json
+import re
 import time
+import urllib
+from urllib.parse import unquote
 
-from selenium import webdriver
+import requests
 
-
-class DarenSpider(object):
-
-    # 创建可见的Chrome浏览器， 方便调试
-    driver = webdriver.Chrome()
-
-    # 创建Chrome的无头浏览器
-    # opt = webdriver.ChromeOptions()
-    # opt.set_headless()
-    # driver = webdriver.Chrome(options=opt)
-
-    driver.implicitly_wait(10)
-
-    total = 1526  # 预先计算的总数据量
-    count = 0  # 已爬取的数据量
-
-    # 记录解析以及翻页位置
-    location = 0
-    click_times = 0
-
-    def run(self):
-        """
-        开始爬虫
-        :return:
-        """
-        # get方式打开网页
-        self.driver.get("https://m.tb.cn/h.ey6Vxn0?sm=29ae31")
-        self.driver.find_element_by_xpath("//span[text()='帖子']").click()
-
-        self.parselist()
-    #
-    #     while self.count < self.total:
-    #         if self.click_times == 2:
-    #
-    #             self.driver.find_element_by_css_selector('#subShowContent1_page > span:nth-child(6) > a').click()
-    #
-    #             # 等待页面加载完成
-    #             time.sleep(5)
-    #             self.click_times = 0
-    #             self.location = 0
-    #         else:
-    #             self.driver.find_element_by_css_selector('#subShowContent1_loadMore').click()
-    #
-    #             # 等待页面加载完成
-    #             time.sleep(3)
-    #             self.click_times += 1
-    #
-    #         # 分析加载的新内容，从location开始
-    #         self.parselist()
-    #
-    #     self.driver.quit()
-    #
-    def parselist(self):
-        """
-        解析列表
-        :return:
-        """
-        divs = self.driver.find_elements_by_xpath(".//span[@class = 'rax-text  rax-text--overflow-hidden rax-text--multiline' and text() != '']")
-        # divs[0].click()
-        time.sleep(5)
-
-        # for i in range(self.location, len(divs)):
-        #     link = divs[i].find_element_by_tag_name('a').get_attribute("href")
-        #     print(link)
-        #
-        #     self.location += 1
-        #     self.count += 1
-        # print(self.count)
-
-
-if __name__ == '__main__':
-    spider = DarenSpider()
-    spider.run()
+APPKEY = '12574478'
+DATA = '{"source": "darenhome", "type": "h5", "userId": "667241583", "page": 1, "tab": "10004"}'
+URL = 'https://h5api.m.taobao.com/h5/mtop.taobao.maserati.darenhome.feed/1.0/'
+params = {'jsv': '2.5.6', 'appKey': APPKEY, 't': int(time.time() * 1000),
+          'sign': 'FAKE_SIGN_WITH_ANYTHING', 'api': 'mtop.taobao.maserati.darenhome.feed', 'v': '1.0',
+          'preventFallback': True,
+          'type': 'jsonp', 'dataType': 'jsonp', 'callback': 'mtopjsonp', 'a': '上海', 'b': '悠悠',
+          'data': DATA}
+headers = {
+    'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 9_3_4 like Mac OS X) AppleWebKit/601.1.46 ' + \
+                  '(KHTML, like Gecko) Version/9.0 Mobile/13G35 Safari/601.1'
+}
+images = []
+try:
+    DATA1 = {"contentId": "", "source": "darenhome", "type": "h5",
+             "params": "{\"sourcePageName\":\"darenhome\"}", "business_spm": "", "track_params": ""}
+    URL1 = 'https://h5api.m.taobao.com/h5/mtop.taobao.beehive.detail.contentservicenewv2/1.0/'
+    params1 = {'jsv': '2.5.1', 'appKey': APPKEY, 't': int(time.time() * 1000),
+               'sign': 'FAKE_SIGN_WITH_ANYTHING', 'api': 'mtop.taobao.beehive.detail.contentservicenewv2', 'v': '1.0',
+               'AntiCreep': True, 'AntiFlood': True, 'timeout': 5000,
+               'type': 'jsonp', 'dataType': 'jsonp', 'callback': 'mtopjsonp1', 'a': '上海', 'b': '悠悠',
+               'data': DATA1}
+    # get token in first request
+    r1 = requests.get(URL, params=params, headers=headers)
+    token_with_time = r1.cookies.get('_m_h5_tk')
+    token = token_with_time.split('_')[0]
+    enc_token = r1.cookies.get('_m_h5_tk_enc')
+    # get results in second request
+    t2 = str(int(time.time() * 1000))
+    c = '&'.join([token, t2, APPKEY, DATA])
+    m = hashlib.md5()
+    m.update(c.encode('utf-8'))
+    params.update({'t': t2, 'sign': m.hexdigest()})
+    cookies = {'_m_h5_tk': token_with_time, '_m_h5_tk_enc': enc_token}
+    r2 = requests.get(URL, params=params, headers=headers, cookies=cookies)
+    items = json.loads(r2.text[11:len(r2.text) - 1]).get('data').get('result').get('data').get('feeds')
+    # print(json.loads(r2.text[11:len(r2.text) - 1]).get('data').get('result').get('data').get('feeds')[0].get('items'))
+    for item in items:
+        print(item.get('cover'))
+        print(item.get('summary'))
+        print(item.get('url'))
+        r3 = requests.get(item.get('url'))
+        print(r3.text)
+        r4 = requests.get(URL1, params=params1, headers=headers, cookies=cookies)
+    # print(r2.request.url)
+    # json_text = re.match(r'(.*\()(.*)(\))', r2.text).group(2)
+    # images = dict(json.loads(json_text))['data']['images']
+except Exception as e:
+    print(e)
