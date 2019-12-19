@@ -37,6 +37,8 @@ def mkdoc_pic(docName, contents):
         os.chdir(path)
         logging.info("new folder..." + path)
         doc = Document()
+        doc.styles['Normal'].font.name = u'宋体'
+        doc.styles['Normal']._element.rPr.rFonts.set(qn('r:eastAsia'), u'宋体')
         distance = Inches(0.3)
         sec = doc.sections[0]  # sections对应文档中的“节”
         sec.left_margin = distance  # 以下依次设置左、右、上、下页面边距
