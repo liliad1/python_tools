@@ -139,9 +139,9 @@ def run():
                     r4 = requests.get(URL1, params=params1, headers=headers, cookies=cookies1)
                     contents = json.loads(r4.text[12:len(r4.text) - 1]).get('data').get('models').get('content')
                     mkdoc_pic(contents.get('title'), contents)
-                    logging.info(contents)
+                    # logging.info(contents)
             else:
-                logging.info('no data')
+                logging.info('The END...')
                 break
     except Exception as e:
         logging.exception(e)
