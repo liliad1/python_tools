@@ -26,11 +26,15 @@ def download_pic(path, picUrl):
 
 
 def mkdoc_pic(docName, contents):
+    docName = docName.strip()
+    docName = docName.rstrip("\\")
+    docName = docName.rstrip("?")
+    docName = docName.replace('|', '')
+    docName = docName.replace('/', '')
     path = BASE_PATH + docName
     # 去除首位空格
-    path = path.strip()
+    # path = path.strip()
     # 去除尾部 \ 符号
-    path = path.rstrip("\\")
     folder = os.path.exists(path)
     if not folder:  # 判断是否存在文件夹如果不存在则创建为文件夹
         os.makedirs(path)  # makedirs 创建文件时如果路径不存在会创建这个路径
@@ -140,8 +144,8 @@ def run():
                     params1.update({'t': t3, 'sign': m1.hexdigest()})
                     r4 = requests.get(URL1, params=params1, headers=headers, cookies=cookies1)
                     contents = json.loads(r4.text[12:len(r4.text) - 1]).get('data').get('models').get('content')
-                    mkdoc_pic(contents.get('title'), contents)
-                    # logging.info(contents)
+                    if contents.get('title'):
+                        mkdoc_pic(contents.get('title'), contents)
             else:
                 logging.info('The END...')
                 break
