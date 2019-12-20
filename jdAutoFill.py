@@ -21,7 +21,6 @@ driver.switch_to.frame('login_frame')
 driver.find_element_by_id('loginname').send_keys('19969324972')
 driver.find_element_by_id('nloginpwd').send_keys('wq235680')
 driver.find_element_by_id('paipaiLoginSubmit').click()
-time.sleep(5)
 for fpathe, dirs, fs in os.walk(DATA_PATH):
     for f in dirs:
         file = os.path.join(fpathe, f) + '\\' + f + '.docx'
@@ -31,13 +30,13 @@ for fpathe, dirs, fs in os.walk(DATA_PATH):
             paragraphs.append(para.text)
         driver.find_element_by_xpath("//*[text()='渠道投稿']").click()
         driver.find_element_by_xpath("//*[text()='文章']").click()
-        time.sleep(5)
         handles = driver.window_handles
         driver.switch_to.window(handles[1])
         driver.find_element_by_xpath("//*[@id='ui-input']/input").send_keys(paragraphs[0])
         driver.find_element_by_xpath(
             "//*[@id='richtext-editor-box']/div[2]/div[2]/div/div/div/div/div/div/span").send_keys('\n'.join(paragraphs[1:]))
-        time.sleep(5)
+        driver.find_element_by_xpath(".//input[@value='保存草稿']").click()
+        time.sleep(2)
         driver.close()
         driver.switch_to.window(handles[0])
 
