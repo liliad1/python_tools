@@ -42,3 +42,11 @@ for fpathe, dirs, fs in os.walk(DATA_PATH):
 
 
 
+# driver.find_element_by_xpath("//*[@id='module-image-cut']/div/div/div/div[2]/input").send_keys(r'D:\temp\data\Dior后台粉底液\O1CN01djooat2054bU9LgWE_!!737296797-0-beehive-scenes.jpg')
+# time.sleep(1)
+# driver.find_element_by_xpath(".//input[@value='上传']").click()
+# time.sleep(1)
+# driver.find_element_by_xpath("//*[@id='rte-cutupload-box']/input").send_keys(r'D:\temp\data\Dior后台粉底液\O1CN01DlM2dX2054bPXcl8L_!!737296797-0-beehive-scenes.jpg')
+# time.sleep(1)
+# driver.find_element_by_xpath(".//input[@value='上传']").click()
+# time.sleep(1)
