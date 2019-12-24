@@ -6,7 +6,6 @@ import os
 import docx
 from selenium import webdriver
 
-
 DATA_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data')
 dir_list = os.listdir(DATA_PATH)
 # 创建可见的Chrome浏览器， 方便调试
@@ -30,7 +29,7 @@ for i in dir_list:
     driver.switch_to.window(handles[1])
     for f in file_path:
         if os.path.splitext(f)[1] == '.docx':
-            doc = docx.Document(os.path.join(DATA_PATH, f))
+            doc = docx.Document(os.path.join(DATA_PATH, i, f))
             paragraphs = []
             for para in doc.paragraphs:
                 paragraphs.append(para.text)
@@ -38,23 +37,11 @@ for i in dir_list:
             driver.find_element_by_xpath(
                 "//*[@id='richtext-editor-box']/div[2]/div[2]/div/div/div/div/div/div/span").send_keys(
                 '\n'.join(paragraphs[1:]))
-        # elif os.path.splitext(f)[1] == '.jpg':
-        #     driver.find_element_by_xpath("//*[@id='rte-cutupload-box']/input").send_keys(os.path.join(DATA_PATH, i, f))
-        #     time.sleep(2)
-        #     driver.find_element_by_xpath("//*[@id='rte-cutupload-box']/div/div/div[3]/input[@value='上传']").click()
-        #     time.sleep(1)
-        driver.find_element_by_xpath(".//input[@value='保存草稿']").click()
-        time.sleep(1)
-        driver.close()
-        driver.switch_to.window(handles[0])
-
-
-
-
-
-
-# driver.find_element_by_xpath("//*[@id='module-image-cut']/div/div/div/div[2]/input").send_keys(r'D:\temp\data\Dior后台粉底液\O1CN01djooat2054bU9LgWE_!!737296797-0-beehive-scenes.jpg')
-# time.sleep(1)
-# driver.find_element_by_xpath(".//input[@value='上传']").click()
-# time.sleep(1)
-
+        elif os.path.splitext(f)[1] == '.jpg':
+            driver.find_element_by_xpath("//*[@id='rte-cutupload-box']/input").send_keys(os.path.join(DATA_PATH, i, f))
+            driver.find_element_by_xpath("//*[@id='richtext-editor-box']/div[1]/ul[1]/li[1]/div[1]/div[1]/div[1]/div[4]/input[@value='上传']").click()
+            time.sleep(2)
+    driver.find_element_by_xpath(".//input[@value='保存草稿']").click()
+    time.sleep(1)
+    driver.close()
+    driver.switch_to.window(handles[0])
