@@ -37,10 +37,10 @@ for i in dir_list:
             driver.find_element_by_xpath(
                 "//*[@id='richtext-editor-box']/div[2]/div[2]/div/div/div/div/div/div/span").send_keys(
                 '\n'.join(paragraphs[1:]))
-        elif os.path.splitext(f)[1] == '.jpg':
-            driver.find_element_by_xpath("//*[@id='rte-cutupload-box']/input").send_keys(os.path.join(DATA_PATH, i, f))
-            driver.find_element_by_xpath("//*[@id='richtext-editor-box']/div[1]/ul[1]/li[1]/div[1]/div[1]/div[1]/div[4]/input[@value='上传']").click()
-            time.sleep(2)
+        # elif os.path.splitext(f)[1] == '.jpg' or os.path.splitext(f)[1] == '.png':
+        #     driver.find_element_by_xpath("//*[@id='rte-cutupload-box']/input").send_keys(os.path.join(DATA_PATH, i, f))
+        #     driver.find_element_by_xpath("//*[@id='richtext-editor-box']/div[1]/ul[1]/li[1]/div[1]/div[1]/div[1]/div[4]/input[@value='上传']").click()
+        #     time.sleep(2)
     driver.find_element_by_xpath(".//input[@value='保存草稿']").click()
     time.sleep(1)
     driver.close()

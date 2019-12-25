@@ -61,11 +61,13 @@ def mkdoc_pic(docName, contents):
                 if attatchment.get('entityType') == 'ResourceItem':
                     for pic in attatchment.get('item').get('itemImages'):
                         download_pic(path, pic.get('picUrl'))
+                        paragraph_set.add(path + '/data/' + pic.get('picUrl').split('/')[-1])
                 elif attatchment.get('entityType') == 'ResourcePic':
                     if attatchment.get('picture').get('picDesc'):
                         # doc.add_paragraph(attatchment.get('picture').get('picDesc'))
                         paragraph_set.add(attatchment.get('picture').get('picDesc'))
                     download_pic(path, attatchment.get('picture').get('picUrl'))
+                    paragraph_set.add(path + '/data/' + attatchment.get('picture').get('picUrl').split('/')[-1])
                 elif attatchment.get('entityType') == 'ResourceText':
                     # doc.add_paragraph(attatchment.get('text'))
                     paragraph_set.add(attatchment.get('text'))
