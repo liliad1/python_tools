@@ -11,7 +11,7 @@ from docx import Document
 from docx.opc.oxml import qn
 from docx.shared import Inches, Pt
 
-BASE_PATH = os.path.dirname(os.path.abspath(__file__)) + '/'
+BASE_PATH = os.path.dirname(os.path.abspath(__file__)) + '\\articles\\'
 logging.basicConfig(format='%(asctime)s - %(pathname)s[line:%(lineno)d] - %(levelname)s: %(message)s',
                     level=logging.INFO)
 
@@ -52,29 +52,28 @@ def mkdoc_pic(docName, contents):
         sec.page_width = Inches(12)  # 设置页面宽度
         sec.page_height = Inches(20)  # 设置页面高度
         doc.add_heading(contents.get('title'), level=1, )
-        paragraph_set = set()
+        text_list = []
         if contents.get('summary'):
             # doc.add_paragraph(contents.get('summary'))
-            paragraph_set.add(contents.get('summary'))
+            text_list.append(contents.get('summary'))
         for richText in contents.get('richText'):
             for attatchment in richText.get('resource'):
                 if attatchment.get('entityType') == 'ResourceItem':
                     for pic in attatchment.get('item').get('itemImages'):
                         download_pic(path, pic.get('picUrl'))
-                        paragraph_set.add(path + '/data/' + pic.get('picUrl').split('/')[-1])
                 elif attatchment.get('entityType') == 'ResourcePic':
-                    if attatchment.get('picture').get('picDesc'):
-                        # doc.add_paragraph(attatchment.get('picture').get('picDesc'))
-                        paragraph_set.add(attatchment.get('picture').get('picDesc'))
                     download_pic(path, attatchment.get('picture').get('picUrl'))
-                    paragraph_set.add(path + '/data/' + attatchment.get('picture').get('picUrl').split('/')[-1])
+                    if attatchment.get('picture').get('picDesc'):
+                        text_list.append(attatchment.get('picture').get('picDesc'))
                 elif attatchment.get('entityType') == 'ResourceText':
                     # doc.add_paragraph(attatchment.get('text'))
-                    paragraph_set.add(attatchment.get('text'))
+                    text_list.append(attatchment.get('text'))
         # doc.add_paragraph(contents.get('richText')[0].get('resource')[0].get('text'))
         # doc.font.name = '宋体'
         # doc._element.rPr.rFonts.set(qn('w:eastAsia'), '宋体')
-        for paragraph in paragraph_set:
+        paragraph_list = list(set(text_list))
+        paragraph_list.sort(key=text_list.index)
+        for paragraph in paragraph_list:
             doc.add_paragraph(paragraph)
         doc.save(docName + '.docx')
     else:
@@ -84,12 +83,18 @@ def mkdoc_pic(docName, contents):
 def run():
     page = 1
     APPKEY = '12574478'
-    DATA = {"source": "darenhome", "type": "h5", "userId": "667241583", "page": page, "tab": "10004"}
+    # DATA = {"source": "darenhome", "type": "h5", "userId": "667241583", "page": page, "tab": "10004"} #美妆达人
+    DATA = {"source": "weitao", "type": "h5", "userId": "2923657204", "page": page, "tab": "10004"} #家居达人
     URL = 'https://h5api.m.taobao.com/h5/mtop.taobao.maserati.darenhome.feed/1.0/'
-    params = {'jsv': '2.5.6', 'appKey': APPKEY, 't': int(time.time() * 1000),
+    # params = {'jsv': '2.5.6', 'appKey': APPKEY, 't': int(time.time() * 1000), #美妆达人
+    #           'sign': 'FAKE_SIGN_WITH_ANYTHING', 'api': 'mtop.taobao.maserati.darenhome.feed', 'v': '1.0',
+    #           'preventFallback': True,
+    #           'type': 'jsonp', 'dataType': 'jsonp', 'callback': 'mtopjsonp', 'a': '上海', 'b': '悠悠',
+    #           'data': ''}
+    params = {'jsv': '2.5.6', 'appKey': APPKEY, 't': int(time.time() * 1000), #家居达人
               'sign': 'FAKE_SIGN_WITH_ANYTHING', 'api': 'mtop.taobao.maserati.darenhome.feed', 'v': '1.0',
               'preventFallback': True,
-              'type': 'jsonp', 'dataType': 'jsonp', 'callback': 'mtopjsonp', 'a': '上海', 'b': '悠悠',
+              'type': 'jsonp', 'dataType': 'jsonp', 'callback': 'mtopjsonp',
               'data': ''}
     headers = {
         'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 9_3_4 like Mac OS X) AppleWebKit/601.1.46 ' + \
