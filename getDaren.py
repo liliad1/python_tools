@@ -18,8 +18,12 @@ logging.basicConfig(format='%(asctime)s - %(pathname)s[line:%(lineno)d] - %(leve
 
 def download_pic(path, picUrl):
     # 下载图片
-    jpg = requests.get('http:' + picUrl)  # get函数获取图片链接地址，requests发送访问请求
+    if not picUrl.startswith('http') and not picUrl.startswith('https'):
+        jpg = requests.get('http:' + picUrl)  # get函数获取图片链接地址，requests发送访问请求
+    else:
+        jpg = requests.get(picUrl)  # get函数获取图片链接地址，requests发送访问请求
     img_name = path + '/' + picUrl.split('/')[-1]
+    img_name = img_name.split('?')[0]
     with open(img_name, 'wb') as f:  # 以byte形式将图片数据写入
         f.write(jpg.content)
         f.flush()
@@ -84,7 +88,9 @@ def run():
     page = 1
     APPKEY = '12574478'
     # DATA = {"source": "darenhome", "type": "h5", "userId": "667241583", "page": page, "tab": "10004"} #美妆达人
-    DATA = {"source": "weitao", "type": "h5", "userId": "2923657204", "page": page, "tab": "10004"} #家居达人
+    # DATA = {"source": "weitao", "type": "h5", "userId": "2923657204", "page": page, "tab": "10004"} #家居达人
+    # DATA = {"source": "darenhome", "type": "h5", "userId": "2769564837", "page": page, "tab": "10004"} #美妆2
+    DATA = {"source": "youhh_h5", "type": "h5", "userId": "2956371778", "page": page, "tab": "10004"} #家居2
     URL = 'https://h5api.m.taobao.com/h5/mtop.taobao.maserati.darenhome.feed/1.0/'
     # params = {'jsv': '2.5.6', 'appKey': APPKEY, 't': int(time.time() * 1000), #美妆达人
     #           'sign': 'FAKE_SIGN_WITH_ANYTHING', 'api': 'mtop.taobao.maserati.darenhome.feed', 'v': '1.0',
